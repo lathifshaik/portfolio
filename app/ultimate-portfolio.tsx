@@ -230,8 +230,10 @@ export function UltimatePortfolioComponent() {
             <ChevronDownIcon className="mr-2" /> About Me
           </h2>
           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
-            I&#39;m a passionate Computer Science student with a strong foundation in web development, data science, and machine learning. 
-            Currently pursuing my BTech at Lovely Professional University, I&#39;m always eager to learn and apply new technologies to solve real-world problems.
+          I&#39;m a Computer Science graduate with a strong foundation in web development, data science, and machine learning.
+           Having completed my BTech from Lovely Professional University, I am now deeply focused on researching Machine Learning and Deep Learning,
+            driven by a passion for solving real-world problems through cutting-edge technology.
+
           </p>
         </motion.section>
 
