@@ -295,54 +295,90 @@ export function UltimatePortfolioComponent() {
         </motion.section>
 
         <motion.section id="projects" className="mb-20" {...fadeInUp}>
-          <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-            <CodeIcon className="mr-2" /> Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Workout Application",
-                description: "Developed a workout tracking application utilizing web technologies and deep learning to monitor user exercises in real time.",
-                tech: "Web Development, Deep Learning, MediaPipe",
-                link: "https://github.com/lathifshaik/Workout"
-              },
-              {
-                title: "Human Action Recognition in Videos using Keras (CNN + LSTM)",
-                description: "Implemented a deep learning model for human action recognition in videos using CNNs and LSTMs.",
-                tech: "Keras, TensorFlow, OpenCV, NumPy, Matplotlib, scikit-learn",
-                link: "https://github.com/lathifshaik/Human-Action-Recognition-in-Videos-using-Keras-CNN-LSTM-"
-              },
-              {
-                title: "Anomaly Detection in NYC taxi demand",
-                description: "Utilized Isolation Forest to detect outliers in NYC taxi demand data, facilitating anomaly detection.",
-                tech: "Numpy, Pandas, matplotlib, scikit-learn, Isolation Forest",
-                link: "https://github.com/lathifshaik/Anomoly-Detection-in-NYC-taxi-demand"
-              }
-            ].map((project, index) => (
-              <motion.div 
-                key={index} 
-                className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-6 shadow-lg transition-colors duration-300`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+      <h2
+        className={`text-3xl font-bold mb-6 flex items-center ${
+          darkMode ? "text-white" : "text-gray-800"
+        }`}
+      >
+        <CodeIcon className="mr-2" /> Projects
+      </h2>
+
+      {/* Horizontal slider container with scroll and drag */}
+      <div
+        className="relative overflow-x-auto flex space-x-6 p-4"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} // hide scrollbar for Firefox and IE
+      >
+        <div className="flex space-x-6" style={{ display: "flex" }}>
+          {[
+            {
+              title: "Workout Application",
+              description:
+                "Developed a workout tracking application utilizing web technologies and deep learning to monitor user exercises in real time.",
+              tech: "Web Development, Deep Learning, MediaPipe",
+              link: "https://github.com/lathifshaik/Workout"
+            },
+            {
+              title: "Human Action Recognition in Videos using Keras (CNN + LSTM)",
+              description:
+                "Implemented a deep learning model for human action recognition in videos using CNNs and LSTMs.",
+              tech: "Keras, TensorFlow, OpenCV, NumPy, Matplotlib, scikit-learn",
+              link:
+                "https://github.com/lathifshaik/Human-Action-Recognition-in-Videos-using-Keras-CNN-LSTM-"
+            },
+            {
+              title: "Anomaly Detection in NYC taxi demand",
+              description:
+                "Utilized Isolation Forest to detect outliers in NYC taxi demand data, facilitating anomaly detection.",
+              tech: "Numpy, Pandas, matplotlib, scikit-learn, Isolation Forest",
+              link:
+                "https://github.com/lathifshaik/Anomoly-Detection-in-NYC-taxi-demand"
+            }
+          ].map((project, index) => (
+            <motion.div
+              key={index}
+              className={`min-w-[300px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] ${
+                darkMode ? "bg-gray-800" : "bg-white"
+              } rounded-lg p-6 shadow-lg transition-colors duration-300`}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3
+                className={`text-xl font-semibold mb-2 ${
+                  darkMode ? "text-white" : "text-gray-800"
+                }`}
               >
-                <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>{project.title}</h3>
-                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>{project.description}</p>
-                <p className={`${darkMode ? 'text-gray-400' : 'text-gray-500'} mb-4`}>Technologies: {project.tech}</p>
-                <motion.a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-blue-600 hover:underline inline-flex items-center"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  View Project
-                  <ExternalLinkIcon className="ml-1" size={16} />
-                </motion.a>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+                {project.title}
+              </h3>
+              <p
+                className={`${
+                  darkMode ? "text-gray-300" : "text-gray-600"
+                } mb-4`}
+              >
+                {project.description}
+              </p>
+              <p
+                className={`${
+                  darkMode ? "text-gray-400" : "text-gray-500"
+                } mb-4`}
+              >
+                Technologies: {project.tech}
+              </p>
+              <motion.a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline inline-flex items-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                View Project
+                <ExternalLinkIcon className="ml-1" size={16} />
+              </motion.a>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
 
         <motion.section id="skills" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
