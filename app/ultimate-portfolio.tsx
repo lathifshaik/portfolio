@@ -231,7 +231,7 @@ export function UltimatePortfolioComponent() {
           </h2>
           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
             I&#39;m a passionate Computer Science student with a strong foundation in web development, data science, and machine learning. 
-            Currently pursuing my BTech at Lovely Professional University, I'm always eager to learn and apply new technologies to solve real-world problems.
+            Currently pursuing my BTech at Lovely Professional University, I&#39;m always eager to learn and apply new technologies to solve real-world problems.
           </p>
         </motion.section>
 
