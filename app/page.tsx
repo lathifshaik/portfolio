@@ -1,10 +1,11 @@
 
-import { UltimatePortfolioComponent } from "@/app/ultimate-portfolio";
+
+import {UltimatePortfolioComponentComponent } from "@/components/ultimate-portfolio-component"
 
 export default function Home() {
   return (
 
-  <UltimatePortfolioComponent />
+    <UltimatePortfolioComponentComponent />
 
   
 

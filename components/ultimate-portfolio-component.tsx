@@ -1,25 +1,28 @@
 'use client'
+
 import Image from 'next/image';
-import myimage from './image.png';
-import { useState, useEffect } from 'react'
-import { motion, useAnimation, useScroll } from 'framer-motion'
-import { ChevronDownIcon, BriefcaseIcon, BookOpenIcon, AwardIcon, CodeIcon, StarIcon, GithubIcon, LinkedinIcon, MailIcon, ExternalLinkIcon, SunIcon, MoonIcon, MenuIcon } from 'lucide-react'
+import dp from './image.png';
+import cs50x from './CS50x.jpg';
+import ele from './elemetsofai.png';
+import cs50p from './CS50P.jpg';
+import big from './big.png';
+import cor from './cor.jpg';
+import iso from './fetured-scaled.jpg';
+import work from './workout.png';
+import workoutapp from './R.jpeg';
+import { useState, useEffect, useRef } from 'react'
+import { motion, useScroll } from 'framer-motion'
+import { ChevronDownIcon, BriefcaseIcon, BookOpenIcon, AwardIcon, CodeIcon, StarIcon, GithubIcon, LinkedinIcon, MailIcon, ExternalLinkIcon, SunIcon, MoonIcon, MenuIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { SiPython, SiSwift, SiLinux, SiCplusplus, SiGo, SiMysql, SiCss3, SiHtml5, SiJavascript, SiNumpy, SiPandas, SiOpencv, SiScikitlearn, SiTensorflow, SiBlender, SiUnity, SiDocker, SiMicrosoftexcel, SiReact, SiDjango, SiFlask, SiMongodb, SiRedhat, SiGit, SiGithub } from 'react-icons/si'
-import { FaJava,FaAws } from "react-icons/fa";
-export function UltimatePortfolioComponent() {
+import { FaJava, FaAws } from "react-icons/fa";
+
+export function UltimatePortfolioComponentComponent() {
   const [activeSection, setActiveSection] = useState('about')
   const [darkMode, setDarkMode] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const controls = useAnimation()
   const { scrollYProgress } = useScroll()
-
-  useEffect(() => {
-    controls.start({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    })
-  }, [controls])
+  const projectsRef = useRef<HTMLDivElement>(null)
+  const certificationsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -71,8 +74,70 @@ export function UltimatePortfolioComponent() {
     setMenuOpen(!menuOpen)
   }
 
+  const projects = [
+    {
+      title: "Workout Application",
+      description: "Developed a workout tracking application utilizing web technologies and deep learning to monitor user exercises in real time.",
+      tech: "Web Development, Deep Learning, MediaPipe",
+      link: "https://github.com/lathifshaik/Workout",
+      image: workoutapp
+    },
+    {
+      title: "Human Action Recognition in Videos",
+      description: "Implemented a deep learning model for human action recognition in videos using CNNs and LSTMs.",
+      tech: "Keras, TensorFlow, OpenCV, NumPy, Matplotlib, scikit-learn",
+      link: "https://github.com/lathifshaik/Human-Action-Recognition-in-Videos-using-Keras-CNN-LSTM-",
+      image: work
+    },
+    {
+      title: "Anomaly Detection in NYC taxi demand",
+      description: "Utilized Isolation Forest to detect outliers in NYC taxi demand data, facilitating anomaly detection.",
+      tech: "Numpy, Pandas, matplotlib, scikit-learn, Isolation Forest",
+      link: "https://github.com/lathifshaik/Anomoly-Detection-in-NYC-taxi-demand",
+      image: iso
+    }
+  ];
+
+  const certifications = [
+    {
+      name: "CS50X Introduction to Computer Science",
+      issuer: "Harvard University",
+      image: cs50x
+    },
+    {
+      name: "CS50P Introduction to Programming with Python",
+      issuer: "Harvard University",
+      image: cs50p
+    },
+    {
+      name: "Elements of AI (Introduction to AI)",
+      issuer: "University of Helsinki",
+      image: ele
+    },
+    {
+      name: "Google Cloud Big Data and Machine Learning Fundamentals",
+      issuer: "Google Cloud Training Online",
+      image: big
+    },
+    {
+      name: "Natural Language Processing Specialization",
+      issuer: "Coursera",
+      image: cor
+    }
+  ];
+
+  const scroll = (ref: React.RefObject<HTMLDivElement>, scrollOffset: number) => {
+    if (ref.current) {
+      ref.current.scrollTo({
+        left: ref.current.scrollLeft + scrollOffset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'} transition-colors duration-300`}>
+      {/* Background animation */}
       <motion.div
         className="fixed inset-0 z-0"
         initial={{ opacity: 0 }}
@@ -101,6 +166,7 @@ export function UltimatePortfolioComponent() {
         ))}
       </motion.div>
       
+      {/* Header */}
       <header className={`sticky top-0 z-50 ${darkMode ? 'bg-gray-800' : 'bg-white'} bg-opacity-90 backdrop-blur-sm shadow-md transition-colors duration-300`}>
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
           <button
@@ -138,6 +204,7 @@ export function UltimatePortfolioComponent() {
       </header>
 
       <main className="container mx-auto px-6 py-12 relative z-10">
+        {/* Hero section */}
         <section id="hero" className="text-center mb-20">
           <motion.div 
             initial={{ opacity: 0, scale: 0.5 }}
@@ -145,18 +212,15 @@ export function UltimatePortfolioComponent() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-           
-
-<div className={`w-48 h-48 mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-full shadow-lg overflow-hidden transition-colors duration-300`}>
-  <Image 
-    src={myimage} 
-    alt="Abdul Lathif Shaik" 
-    width={200}  
-    height={200} 
-    className="object-cover"
-  />
-</div>
-
+            <div className={`w-48 h-48 mx-auto ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-full shadow-lg overflow-hidden transition-colors duration-300`}>
+              <Image 
+                src={dp}
+                alt="Abdul Lathif Shaik" 
+                width={200}  
+                height={200} 
+                className="object-cover"
+              />
+            </div>
           </motion.div>
           <motion.h1 
             className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}
@@ -225,18 +289,18 @@ export function UltimatePortfolioComponent() {
           </motion.div>
         </section>
 
+        {/* About section */}
         <motion.section id="about" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <ChevronDownIcon className="mr-2" /> About Me
           </h2>
           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
-          I&#39;m a Computer Science graduate with a strong foundation in web development, data science, and machine learning.
-           Having completed my BTech from Lovely Professional University, I am now deeply focused on researching Machine Learning and Deep Learning,
-            driven by a passion for solving real-world problems through cutting-edge technology.
+          I&#39;m a Computer Science graduate with a strong foundation in web development, data science, and machine learning. Having completed my BTech from Lovely Professional University, I am now deeply focused on researching Machine Learning and Deep Learning, driven by a passion for solving real-world problems through cutting-edge technology.
 
           </p>
         </motion.section>
 
+        {/* Education section */}
         <motion.section id="education" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <BookOpenIcon className="mr-2" /> Education
@@ -275,6 +339,7 @@ export function UltimatePortfolioComponent() {
           </div>
         </motion.section>
 
+        {/* Experience section */}
         <motion.section id="experience" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <BriefcaseIcon className="mr-2" /> Experience
@@ -294,92 +359,74 @@ export function UltimatePortfolioComponent() {
           </motion.div>
         </motion.section>
 
+        {/* Projects section with slider */}
         <motion.section id="projects" className="mb-20" {...fadeInUp}>
-      <h2
-        className={`text-3xl font-bold mb-6 flex items-center ${
-          darkMode ? "text-white" : "text-gray-800"
-        }`}
-      >
-        <CodeIcon className="mr-2" /> Projects
-      </h2>
-
-      {/* Horizontal slider container with scroll and drag */}
-      <div
-        className="relative overflow-x-auto flex space-x-6 p-4"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} // hide scrollbar for Firefox and IE
-      >
-        <div className="flex space-x-6" style={{ display: "flex" }}>
-          {[
-            {
-              title: "Workout Application",
-              description:
-                "Developed a workout tracking application utilizing web technologies and deep learning to monitor user exercises in real time.",
-              tech: "Web Development, Deep Learning, MediaPipe",
-              link: "https://github.com/lathifshaik/Workout"
-            },
-            {
-              title: "Human Action Recognition in Videos using Keras (CNN + LSTM)",
-              description:
-                "Implemented a deep learning model for human action recognition in videos using CNNs and LSTMs.",
-              tech: "Keras, TensorFlow, OpenCV, NumPy, Matplotlib, scikit-learn",
-              link:
-                "https://github.com/lathifshaik/Human-Action-Recognition-in-Videos-using-Keras-CNN-LSTM-"
-            },
-            {
-              title: "Anomaly Detection in NYC taxi demand",
-              description:
-                "Utilized Isolation Forest to detect outliers in NYC taxi demand data, facilitating anomaly detection.",
-              tech: "Numpy, Pandas, matplotlib, scikit-learn, Isolation Forest",
-              link:
-                "https://github.com/lathifshaik/Anomoly-Detection-in-NYC-taxi-demand"
-            }
-          ].map((project, index) => (
-            <motion.div
-              key={index}
-              className={`min-w-[300px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] ${
-                darkMode ? "bg-gray-800" : "bg-white"
-              } rounded-lg p-6 shadow-lg transition-colors duration-300`}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+          <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? "text-white" : "text-gray-800"}`}>
+            <CodeIcon className="mr-2" /> Projects
+          </h2>
+          <div className="relative">
+            <div 
+              ref={projectsRef}
+              className="flex overflow-x-scroll scrollbar-hide space-x-6 p-4"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              <h3
-                className={`text-xl font-semibold mb-2 ${
-                  darkMode ? "text-white" : "text-gray-800"
-                }`}
-              >
-                {project.title}
-              </h3>
-              <p
-                className={`${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                } mb-4`}
-              >
-                {project.description}
-              </p>
-              <p
-                className={`${
-                  darkMode ? "text-gray-400" : "text-gray-500"
-                } mb-4`}
-              >
-                Technologies: {project.tech}
-              </p>
-              <motion.a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline inline-flex items-center"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                View Project
-                <ExternalLinkIcon className="ml-1" size={16} />
-              </motion.a>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </motion.section>
+              {projects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  className={`flex-none w-80 ${darkMode ? "bg-gray-800" : "bg-white"} rounded-lg shadow-lg overflow-hidden transition-colors duration-300`}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={300}
+                    height={200}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className={`text-xl font-semibold mb-2 ${darkMode ? "text-white" : "text-gray-800"}`}>
+                      {project.title}
+                    </h3>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} mb-4`}>
+                      {project.description}
+                    </p>
+                    <p className={`${darkMode ? "text-gray-400" : "text-gray-500"} mb-4`}>
+                      Technologies: {project.tech}
+                    </p>
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline inline-flex items-center"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      View Project
+                      <ExternalLinkIcon className="ml-1" size={16} />
+                    </motion.a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <button
+              onClick={() => scroll(projectsRef, -300)}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg"
+              aria-label="Scroll left"
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              onClick={() => scroll(projectsRef, 300)}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg"
+              aria-label="Scroll right"
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </motion.section>
 
+        {/* Skills section */}
         <motion.section id="skills" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <CodeIcon className="mr-2" /> Skills
@@ -424,30 +471,54 @@ export function UltimatePortfolioComponent() {
           </div>
         </motion.section>
 
+        {/* Certifications section with slider */}
         <motion.section id="certifications" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <AwardIcon className="mr-2" /> Certifications
           </h2>
-          <ul className="space-y-4">
-            {[
-              "CS50X Introduction to Computer Science, Harvard University",
-              "CS50P Introduction to Programming with Python, Harvard University",
-              "Elements of AI (Introduction to AI), University of Helsinki",
-              "Google Cloud Big Data and Machine Learning Fundamentals, Google Cloud Training Online",
-              "Natural Language Processing Specialization, Coursera"
-            ].map((cert, index) => (
-              <motion.li 
-                key={index} 
-                className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-4 shadow-lg transition-colors duration-300`}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <p className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{cert}</p>
-              </motion.li>
-            ))}
-          </ul>
+          <div className="relative">
+            <div 
+              ref={certificationsRef}
+              className="flex overflow-x-scroll scrollbar-hide space-x-6 p-4"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {certifications.map((cert, index) => (
+                <motion.div 
+                  key={index} 
+                  className={`flex-none w-64 ${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg p-4 shadow-lg transition-colors duration-300`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Image
+                    src={cert.image}
+                    alt={cert.name}
+                    
+                    
+                    className="w-full h-32 object-cover mb-4 rounded"
+                  />
+                  <h3 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{cert.name}</h3>
+                  <p className={darkMode ? 'text-gray-300' : 'text-gray-600'}>{cert.issuer}</p>
+                </motion.div>
+              ))}
+            </div>
+            <button
+              onClick={() => scroll(certificationsRef, -300)}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg"
+              aria-label="Scroll left"
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              onClick={() => scroll(certificationsRef, 300)}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg"
+              aria-label="Scroll right"
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
         </motion.section>
 
+        {/* Achievements section */}
         <motion.section id="achievements" className="mb-20" {...fadeInUp}>
           <h2 className={`text-3xl font-bold mb-6 flex items-center ${darkMode ? 'text-white' : 'text-gray-800'}`}>
             <AwardIcon className="mr-2" /> Achievements
@@ -472,6 +543,7 @@ export function UltimatePortfolioComponent() {
         </motion.section>
       </main>
 
+      {/* Footer */}
       <footer className={`${darkMode ? 'bg-gray-800' : 'bg-gray-200'} py-8 transition-colors duration-300`}>
         <div className="container mx-auto px-6 text-center">
           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>© 2024 Abdul Lathif Shaik. All rights reserved.</p>
